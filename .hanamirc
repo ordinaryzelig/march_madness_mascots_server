@@ -1,0 +1,4 @@
+project=march_madness_mascots_server
+architecture=container
+test=minitest
+template=erb
