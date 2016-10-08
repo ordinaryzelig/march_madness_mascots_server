@@ -90,6 +90,7 @@ GEM
     minitest (5.9.1)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
+    pg (0.18.4)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -114,6 +115,7 @@ DEPENDENCIES
   hanami (~> 0.8)
   hanami-model (~> 0.6)
   minitest
+  pg
   rake
   shotgun
 
