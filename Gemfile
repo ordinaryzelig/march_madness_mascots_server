@@ -6,6 +6,7 @@ gem 'hanami',       '~> 0.8'
 gem 'hanami-model', '~> 0.6'
 
 gem 'pg'
+gem 'rack-cors'
 
 group :development do
   # Code reloading
@@ -15,6 +16,7 @@ end
 
 group :test, :development do
   gem 'dotenv', '~> 2.0'
+  gem 'awesome_print'
 end
 
 group :test do
