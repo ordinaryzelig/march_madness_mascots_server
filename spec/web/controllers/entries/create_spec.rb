@@ -8,15 +8,15 @@ describe Web::Controllers::Entries::Create do
     params = {
       'name' => 'colin',
       'mascots' => [
-        'oregon ducks',
-        'oklahoma sooners',
-        'western kentucky hilltoppers',
+        {'name' => 'oregon ducks'},
+        {'name' => 'oklahoma sooners'},
+        {'name' => 'western kentucky hilltoppers'},
       ],
     }
     response = action.call(params)
 
     entry = EntryRepository.latest_by_name(params.fetch('name'))
-    entry.mascots.must_equal params.fetch('mascots')
+    entry.data.fetch('mascots').must_equal params.fetch('mascots')
 
     response[0].must_equal 200
   end

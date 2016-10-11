@@ -1,7 +1,7 @@
 require 'hanami/model'
 require 'hanami/mailer'
 Dir["#{ __dir__ }/march_madness_mascots_server/**/*.rb"].each { |file| require_relative file }
-require_relative './ext/pg_array'
+require_relative './ext/pg_jsonb'
 
 Hanami::Model.configure do
   ##
@@ -30,9 +30,10 @@ Hanami::Model.configure do
   mapping do
     collection :entries do
       entity Entry
-      repository EntryRepository
       attribute :name, String
-      attribute :mascots, PGArray
+      attribute :data, PGJson
+      attribute :created_at, DateTime
+      attribute :updated_at, DateTime
     end
   end
 end.load!

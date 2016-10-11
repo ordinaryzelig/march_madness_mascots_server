@@ -2,6 +2,7 @@ class Entry
 
   include Hanami::Entity
 
-  attributes :name, :mascots
+  attributes :name, :data
+  attributes :created_at, :updated_at
 
 end

@@ -3,7 +3,12 @@ module Web::Controllers::Entries
     include Web::Action
 
     def call(params)
-      entry = Entry.new(params)
+      entry = Entry.new(
+        name: params[:name],
+        data: {
+          'mascots' => params[:mascots],
+        },
+      )
       EntryRepository.create(entry)
     end
   end
