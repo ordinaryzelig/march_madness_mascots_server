@@ -81,7 +81,12 @@ module Web
       # middleware.use Rack::Protection
       middleware.use Rack::Cors do
         allow do
-          origins 'localhost:4200'
+          origins case Hanami.env
+            when 'development'
+              'localhost:4200'
+            when 'production'
+              'https://march-madness-mascots-angular2.herokuapp.com/'
+            end
           resource(
             '/entries',
             methods: [:post],
