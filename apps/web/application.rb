@@ -85,7 +85,7 @@ module Web
             when 'development'
               'localhost:4200'
             when 'production'
-              'https://march-madness-mascots-angular2.herokuapp.com/'
+              'march-madness-mascots-angular2.herokuapp.com'
             end
           resource(
             '/entries',
