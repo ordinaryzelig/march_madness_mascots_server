@@ -10,7 +10,9 @@ module Web::Controllers::Entries
           'mascots' => params[:mascots],
         },
       )
-      EntryRepository.create(entry)
+      entry = EntryRepository.create(entry)
+      entry.send_mail
     end
+
   end
 end

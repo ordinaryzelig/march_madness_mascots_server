@@ -5,31 +5,29 @@ class Entry
   attributes :name, :email, :data
   attributes :created_at, :updated_at
 
-  def mail_to(to)
+  def send_mail
     sg = SendGrid::API.new(api_key: ENV.fetch('SENDGRID_API_KEY'))
-    sg.client.mail._("send").post(request_body: mail_request_body(to))
+    request_body = mail_request_body([email, MY_EMAIL].compact)
+    sg.client.mail._("send").post(request_body: request_body)
   end
 
 private
 
-  MY_EMAIL = 'march-madness-mascots@redningja.com'.freeze
+  MY_EMAIL = 'jared@redningja.com'.freeze
 
   def mail_content
     data.fetch('mascots')
       .each_with_index
-      .map { |mascot, idx| "#{idx + 1} #{mascot.fetch('name')}" }
+      .map { |mascot, idx| "#{idx + 1} #{mascot.fetch('school')} #{mascot.fetch('name')}" }
       .join("\n")
   end
 
-  def mail_request_body(to)
+  def mail_request_body(tos)
     {
       'personalizations' => [
         {
-          'to' => [
-            {'email' => to},
-            {'email' => MY_EMAIL},
-          ],
-          'subject' => "March Madness Mascots Entry: #{name} (id #{self.id})",
+          'to' => tos.map { |to| {'email' => to} },
+          'subject' => "March Madness Mascots Entry: #{name} (id #{id})",
         },
       ],
       'from' => {'email' => MY_EMAIL},
