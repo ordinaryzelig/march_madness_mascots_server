@@ -30,6 +30,7 @@ Hanami::Model.configure do
   mapping do
     collection :entries do
       entity Entry
+      attribute :id,   Integer
       attribute :name, String
       attribute :data, PGJson
       attribute :created_at, DateTime

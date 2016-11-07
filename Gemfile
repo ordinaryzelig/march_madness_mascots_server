@@ -7,6 +7,8 @@ gem 'hanami-model', '~> 0.6'
 
 gem 'pg'
 gem 'rack-cors'
+gem 'awesome_print'
+gem 'sendgrid-ruby'
 
 group :development do
   # Code reloading
@@ -16,7 +18,6 @@ end
 
 group :test, :development do
   gem 'dotenv', '~> 2.0'
-  gem 'awesome_print'
 end
 
 group :test do
