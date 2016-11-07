@@ -5,6 +5,7 @@ module Web::Controllers::Entries
     def call(params)
       entry = Entry.new(
         name: params[:name],
+        email: params[:email],
         data: {
           'mascots' => params[:mascots],
         },

@@ -2,7 +2,7 @@ class Entry
 
   include Hanami::Entity
 
-  attributes :name, :data
+  attributes :name, :email, :data
   attributes :created_at, :updated_at
 
   def mail_to(to)
@@ -11,6 +11,8 @@ class Entry
   end
 
 private
+
+  MY_EMAIL = 'march-madness-mascots@redningja.com'.freeze
 
   def mail_content
     data.fetch('mascots')
@@ -23,11 +25,14 @@ private
     {
       'personalizations' => [
         {
-          'to' => [{'email' => to}],
+          'to' => [
+            {'email' => to},
+            {'email' => MY_EMAIL},
+          ],
           'subject' => "March Madness Mascots Entry: #{name} (id #{self.id})",
         },
       ],
-      'from' => {'email' => 'march-madness-mascots@redningja.com'},
+      'from' => {'email' => MY_EMAIL},
       'content' => [
         {
           'type' => 'text/plain',
