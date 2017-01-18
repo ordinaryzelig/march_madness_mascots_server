@@ -90,7 +90,12 @@ module Web
           resource(
             '/entries',
             methods: [:post],
-            headers: 'content-type',
+            headers: [
+              'content-type',
+              # safari needs these
+              'accept',
+              'origin',
+            ],
           )
         end
       end
